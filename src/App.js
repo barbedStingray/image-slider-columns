@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useRef } from 'react'
 import './App.css';
+import imperials from './images/imperials.jpeg'
+import pelennorFields from './images/pelenorFields.jpeg'
+import gondorCommand from './images/gondorCommand.webp'
+
+
 
 function App() {
+
+  const [focusCard, setFocusCard] = useState(0)
+  const photoArray = [imperials, pelennorFields, gondorCommand]
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className='display'>
+        {photoArray.map((photo, i) => (
+          <div
+            key={i}
+            className={`section ${i === focusCard ? 'focus' : ''}`}
+            onClick={() => setFocusCard(i)}
+          >
+            <img className='picture' src={photo} />
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }
+
 
 export default App;
